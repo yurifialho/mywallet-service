@@ -1,27 +1,41 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Categoria</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Descricao</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categoria.each do |categoria| %>
-      <tr>
-        <td><%= categoria.descricao %></td>
-        <td><%= link_to 'Show', categoria %></td>
-        <td><%= link_to 'Edit', edit_categoria_path(categoria) %></td>
-        <td><%= link_to 'Destroy', categoria, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Categorium', new_categoria_path %>
+<div class="container-fluid">
+  <div class="container-fluid row">
+    <h1><%= @titulo %></h1>
+  </div>
+  <div class='container-fluid row'>
+    <div class="card w-100">
+      <div class="card-header">
+        <%= render 'form', categoria: @categoria %>
+      </div>
+      <div class="card-body">
+        <div class='container-fluid row'>
+        <table class="table table-sm table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="text-center col-md-1"><%= t('label.cod') %></th>
+              <th scope="col" class="text-center"><%= t('label.descricao') %></th>
+              <th scope="col" class="text-center col-md-1"><%= t('label.acao') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @categorias.each do |categoria| %>
+              <tr>
+                <th class="align-middle text-center" scope="row"><%= categoria.id %></th>
+                <td class="align-middle"><%= categoria.descricao %></td>
+                <td class="my-0 text-center align-middle">
+                  <%= link_to categoria, class: 'btn btn-outline-primary btn-sm' do %><i class="material-icons my-0">search</i><% end %>
+                  <%= link_to edit_categoria_path(categoria), class: 'btn btn-outline-warning btn-sm' do %><i class="material-icons my-0">create</i><% end %>
+                  <%= link_to categoria, method: :delete, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('msg.confirm') }  do %><i class="material-icons my-0">clear</i><% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="mx-auto">
+          <%= will_paginate @categorias %>    
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

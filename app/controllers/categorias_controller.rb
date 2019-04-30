@@ -1,10 +1,14 @@
 class CategoriasController < ApplicationController
   before_action :set_categoria, only: [:show, :edit, :update, :destroy]
+  before_action :set_titulo
+
+  @@titulo = I18n.t('model.categoria.titulo');
 
   # GET /categoria
   # GET /categoria.json
   def index
-    @categoria = Categoria.all
+    @categoria  = Categoria.new
+    @categorias = Categoria.paginate(page: params[:page], per_page: @@per_page)
   end
 
   # GET /categoria/1
@@ -28,7 +32,7 @@ class CategoriasController < ApplicationController
 
     respond_to do |format|
       if @categoria.save
-        format.html { redirect_to @categoria, notice: 'categoria was successfully created.' }
+        format.html { redirect_to categorias_path,  notice: @@titulo + t('msg.salva') }
         format.json { render :show, status: :created, location: @categoria }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class CategoriasController < ApplicationController
   def update
     respond_to do |format|
       if @categoria.update(categoria_params)
-        format.html { redirect_to @categoria, notice: 'categoria was successfully updated.' }
+        format.html { redirect_to @categoria, notice: @@titulo + t('msg.update') }
         format.json { render :show, status: :ok, location: @categoria }
       else
         format.html { render :edit }
@@ -56,7 +60,7 @@ class CategoriasController < ApplicationController
   def destroy
     @categoria.destroy
     respond_to do |format|
-      format.html { redirect_to categoria_url, notice: 'categoria was successfully destroyed.' }
+      format.html { redirect_to categorias_path, notice: @@titulo + t('msg.remove') }
       format.json { head :no_content }
     end
   end
