@@ -1,22 +1,24 @@
 <%= form_with(model: conta, local: true) do |form| %>
   <% if conta.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(conta.errors.count, "error") %> prohibited this contum from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(conta.errors.count, "error") %> prohibited this contum from being saved:</h2>
 
-      <ul>
-      <% conta.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <ul>
+    <% conta.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <% end %>
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <label class="col-form-label mb-2" for="nomeField"><%= t('model.conta.titulo') %></label>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :nome, :class => "form-control mb-2", 'autofocus'=>"autofocus", :id => "nomeField", :placeholder => t('label.nome') %>
+    </div>
+    <div class="col-auto">
+      <%= form.submit t('label.incluir'), :class => "btn btn-primary mb-2" %>
+    </div>
   </div>
 <% end %>

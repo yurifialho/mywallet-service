@@ -1,10 +1,14 @@
 class ContasController < ApplicationController
   before_action :set_conta, only: [:show, :edit, :update, :destroy]
+  before_action :set_titulo
+
+  @@titulo = I18n.t('model.conta.titulo');
 
   # GET /conta
   # GET /conta.json
   def index
-    @conta = Conta.paginate(page: params[:page], per_page: 5)
+    @conta = Conta.new
+    @contas = Conta.paginate(page: params[:page], per_page: @@per_page)
   end
 
   # GET /conta/1
@@ -14,7 +18,7 @@ class ContasController < ApplicationController
 
   # GET /conta/new
   def new
-    @conta = Conta.new
+    @conta = Conta.new    
   end
 
   # GET /conta/1/edit
@@ -28,10 +32,10 @@ class ContasController < ApplicationController
 
     respond_to do |format|
       if @conta.save
-        format.html { redirect_to contas_path, notice: 'Conta was successfully created.' }
+        format.html { redirect_to contas_path, notice: @@titulo + t('msg.salva')}
         format.json { render :index, status: :created, location: @conta }
       else
-        format.html { render :new }
+        format.html { redirect_to contas_path, alert: @conta.errors.messages }
         format.json { render json: @conta.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +46,7 @@ class ContasController < ApplicationController
   def update
     respond_to do |format|
       if @conta.update(conta_params)
-        format.html { redirect_to @conta, notice: 'Conta was successfully updated.' }
+        format.html { redirect_to @conta, notice: @@titulo + t('msg.update') }
         format.json { render :show, status: :ok, location: @conta }
       else
         format.html { render :edit }
@@ -55,8 +59,9 @@ class ContasController < ApplicationController
   # DELETE /conta/1.json
   def destroy
     @conta.destroy
+    params[:id] = nil
     respond_to do |format|
-      format.html { redirect_to conta_url, notice: 'Conta was successfully destroyed.' }
+      format.html { redirect_to contas_path, notice: @@titulo + t('msg.remove') }
       format.json { head :no_content }
     end
   end
