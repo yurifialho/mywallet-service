@@ -35,7 +35,7 @@ class CategoriasController < ApplicationController
         format.html { redirect_to categorias_path,  notice: @@titulo + t('msg.salva') }
         format.json { render :show, status: :created, location: @categoria }
       else
-        format.html { render :new }
+        format.html { redirect_to categorias_path, alert: @categoria.errors.messages }
         format.json { render json: @categoria.errors, status: :unprocessable_entity }
       end
     end
