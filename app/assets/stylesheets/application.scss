@@ -13,4 +13,13 @@
  *= require material_icons
  */
 
- @import "bootstrap";
+@import "variables";
+@import "bootstrap";
+
+ .btn-sm {
+     font-size: $font-size-base;
+ }
+
+ .material-icons {
+     font-size: $font-size-base;  /* Preferred icon size */
+ }
