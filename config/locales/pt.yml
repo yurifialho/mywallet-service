@@ -1,0 +1,21 @@
+pt:
+
+  msg:
+    salva: ' foi salva'
+    remove: ' foi removido'
+    update: ' foi atualizado'
+    confirm: 'Você tem certeza?'
+  
+  label:
+    nome: 'Name'
+    descricao: 'Description'
+    acao: 'Action'
+    cod: '#'
+    incluir: 'Add'
+    conta: 'Account'
+  
+  model:
+    conta:
+      titulo: 'Conta'
+    categoria:
+      titulo: 'Categoria'

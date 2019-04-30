@@ -30,4 +30,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  msg:
+    salva: ' has salved'
+    remove: ' has removed'
+    update: ' has updated'
+    confirm: ' Are you sure?'
+  
+  label:
+    nome: 'Name'
+    descricao: 'Description'
+    acao: 'Action'
+    cod: '#'
+    incluir: 'Add'
+  
+  model:
+    conta:
+      titulo: 'Account'
+    categoria:
+      titulo: 'Category'
