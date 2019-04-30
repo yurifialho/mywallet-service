@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @conta.nome %>
+</p>
+
+<%= link_to 'Edit', edit_conta_path(@conta), class: ['btn btn-primary']  %> |
+<%= link_to 'Back', contas_path, class: ['btn btn-danger'] %>

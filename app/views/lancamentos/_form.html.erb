@@ -1,0 +1,47 @@
+<%= form_with(model: lancamento, local: true) do |form| %>
+  <% if lancamento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lancamento.errors.count, "error") %> prohibited this lancamento from being saved:</h2>
+
+      <ul>
+      <% lancamento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao %>
+    <%= form.text_field :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.datetime_select :data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categoria_id %>
+    <%= form.text_field :categoria_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_id %>
+    <%= form.text_field :tipo_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

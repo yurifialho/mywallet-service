@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MYWALLET</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <%= render 'layouts/head' %>
+
+      <div class="row py-4 my-4">
+          <div class="col-sm">
+          <%= render 'layouts/alert' %> 
+          <%= yield %>
+        </div>
+      </div>
+      
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>
