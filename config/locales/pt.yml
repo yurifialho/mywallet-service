@@ -12,6 +12,8 @@ pt:
     acao: 'Ação'
     cod: '#'
     incluir: 'Incluir'
+    valor: 'Valor'
+    data: 'Data'
   
   model:
     conta:
@@ -20,3 +22,5 @@ pt:
       titulo: 'Categoria'
     tipo:
       titulo: "Tipo"
+    lancamento:
+      titulo: "Lançamento"

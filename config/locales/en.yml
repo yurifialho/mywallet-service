@@ -43,6 +43,8 @@ en:
     acao: 'Action'
     cod: '#'
     incluir: 'Add'
+    valor: 'Value'
+    data: 'Date'
   
   model:
     conta:
@@ -51,3 +53,5 @@ en:
       titulo: 'Category'
     tipo:
       titulo: "Type"
+    lancamento:
+      titulo: "Accounting Entry"
