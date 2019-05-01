@@ -49,3 +49,5 @@ en:
       titulo: 'Account'
     categoria:
       titulo: 'Category'
+    tipo:
+      titulo: "Type"

@@ -7,15 +7,16 @@ pt:
     confirm: 'Você tem certeza?'
   
   label:
-    nome: 'Name'
-    descricao: 'Description'
-    acao: 'Action'
+    nome: 'Nome'
+    descricao: 'Descrição'
+    acao: 'Ação'
     cod: '#'
-    incluir: 'Add'
-    conta: 'Account'
+    incluir: 'Incluir'
   
   model:
     conta:
       titulo: 'Conta'
     categoria:
       titulo: 'Categoria'
+    tipo:
+      titulo: "Tipo"

@@ -1,10 +1,14 @@
 class TiposController < ApplicationController
   before_action :set_tipo, only: [:show, :edit, :update, :destroy]
+  before_action :set_titulo
+
+  @@titulo = I18n.t('model.tipo.titulo');
 
   # GET /tipos
   # GET /tipos.json
   def index
-    @tipos = Tipo.all
+    @tipo = Tipo.new
+    @tipos = Tipo.paginate(page: params[:page], per_page: @@per_page)
   end
 
   # GET /tipos/1
@@ -28,10 +32,10 @@ class TiposController < ApplicationController
 
     respond_to do |format|
       if @tipo.save
-        format.html { redirect_to @tipo, notice: 'Tipo was successfully created.' }
+        format.html { redirect_to tipos_path,  notice: @@titulo + t('msg.salva') }
         format.json { render :show, status: :created, location: @tipo }
       else
-        format.html { render :new }
+        format.html { redirect_to tipos_path, alert: @tipo.errors.messages }
         format.json { render json: @tipo.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +46,7 @@ class TiposController < ApplicationController
   def update
     respond_to do |format|
       if @tipo.update(tipo_params)
-        format.html { redirect_to @tipo, notice: 'Tipo was successfully updated.' }
+        format.html { redirect_to @tipo, notice: @@titulo + t('msg.update') }
         format.json { render :show, status: :ok, location: @tipo }
       else
         format.html { render :edit }
@@ -56,7 +60,7 @@ class TiposController < ApplicationController
   def destroy
     @tipo.destroy
     respond_to do |format|
-      format.html { redirect_to tipos_url, notice: 'Tipo was successfully destroyed.' }
+      format.html { redirect_to tipos_url, notice: @@titulo + t('msg.remove') }
       format.json { head :no_content }
     end
   end
