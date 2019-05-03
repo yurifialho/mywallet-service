@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="container-fluid row">
+    <h1><%= @titulo %></h1>
+  </div>
+  <%= form_tag conta_painel_index_path, method: :get do %>
+    <%= select_tag :conta, options_from_collection_for_select(Conta.all.collect, "id", "nome"),
+                   :onchange => ("javascript: this.parentNode.submit()") %>
+  <% end %>
+  <div class='container-fluid row'>
+    <div class="card w-100">
+      <div class="card-header">
+      <% for i in 1..12 %>
+        <button type="button" class="btn btn-outline-primary"><%= "#{i} - #{Date::MONTHNAMES[i]}"%></button>
+      <% end %> 
+      </div>
+      <div class="card-body">
+        <div class='container-fluid row'>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
