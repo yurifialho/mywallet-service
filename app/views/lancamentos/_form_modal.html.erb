@@ -1,0 +1,66 @@
+<%= form_with(model: lancamento, local: true) do |form| %>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLancamentoModalLabel">Add Lançamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+        <% if lancamento.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(lancamento.errors.count, "error") %> prohibited this lancamento from being saved:</h2>
+    
+          <ul>
+          <% lancamento.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        
+        <div class="form-group">
+          <label for="lancamento_nome"><%= t('label.nome') %></label>
+          <%= form.text_field :nome, {:class => 'form-control',
+                                      'placeholder' => "Nome do lançamento",
+                                      'aria-describedby' => 'nameHelp'  }%>
+        </div>
+        <div class="form-group">
+          <label for="lancamento_descricao"><%= t('label.descricao') %></label>
+          <%= form.text_field :descricao, {:class => 'form-control',
+                                      'placeholder' => "Descrição do lançamento"}%>
+        </div>
+        <div class="form-group">
+          <label for="lancamento_valor"><%= t('label.valor') %></label>
+          <%= form.text_field :valor, {:class => 'form-control',
+                                      'placeholder' => "Valor do lançamento"}%>
+        </div>
+        <div class="form-group">
+          <label for="lancamento_data"><%= t('label.data') %></label>
+          <%= form.datetime_select :data, {:class => 'form-control',
+                                      'placeholder' => "Data do lançamento"}%>
+        </div>
+        <div class="form-group">
+          <label for="lancamento_categoria_id"><%= t('model.categoria.titulo') %></label>
+          <%= form.select :categoria_id, 
+                          Categoria.all.collect {|categoria| [categoria.descricao, categoria.id]}, 
+                          {:class => 'form-control',
+                                     'placeholder' => "Categoria do lançamento"}%>
+        </div>
+        <div class="form-group">
+        <label for="lancamento_tipo_id"><%= t('model.tipo.titulo') %></label>
+        <%= form.select :tipo_id, 
+                        Tipo.all.collect {|tipo| [tipo.descricao, tipo.id]}, 
+                        {:class => 'form-control',
+                                   'placeholder' => "Tipo do lançamento"}%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= form.submit t('label.incluir'), :class => "btn btn-primary" %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+<% end %>
