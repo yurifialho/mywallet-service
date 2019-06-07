@@ -56,6 +56,13 @@
                         {:class => 'form-control',
                                    'placeholder' => "Tipo do lançamento"}%>
         </div>
+        <div class="form-group">
+        <label for="lancamento_conta_id"><%= t('model.conta.titulo') %></label>
+        <%= form.select :conta_id, 
+                        Conta.all.collect {|conta| [conta.nome, conta.id]}, 
+                        {:class => 'form-control',
+                                   'placeholder' => "Conta"}%>
+        </div>
       </div>
       <div class="modal-footer">
         <%= form.submit t('label.incluir'), :class => "btn btn-primary" %>

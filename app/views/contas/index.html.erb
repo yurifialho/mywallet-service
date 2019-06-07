@@ -18,6 +18,11 @@
             </tr>
           </thead>
           <tbody>
+            <% if @contas.size == 0 %>
+              <tr scope="row">
+                <th class="align-middler text-center" scope="col" colspan="3"><%= t('msg.no_record') %></th>
+              </tr>
+            <% end %>
             <% @contas.each do |conta| %>
               <tr>
                 <th class="align-middle text-center" scope="row"><%= conta.id %></th>

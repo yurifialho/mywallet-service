@@ -5,6 +5,7 @@ pt:
     remove: ' foi removido'
     update: ' foi atualizado'
     confirm: 'Você tem certeza?'
+    no_record: 'Nenhum registro foi encontrado.'
   
   label:
     nome: 'Nome'
