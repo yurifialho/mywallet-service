@@ -1,0 +1,48 @@
+<div class='container-fluid row'>
+<table class="table table-sm table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="text-center">#</th>
+      <% columns.each do |col| %>
+        <th scope="col" class="text-center"><%= col.capitalize %></th>
+      <% end %>
+        <th scope="col" class="text-center col-md-2"><%= t('label.acao') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% dados.each do |dado| %>
+      <tr class="clickable-row" data-href="<%= "#{dado.class.name.pluralize.downcase}/#{dado.id}" %>">
+        <th class="align-middle text-center" scope="row"><%= dado.id %></th>
+        <% columns.each do |col| %>
+          <td class="align-middle"><%= dado[col] %></td>
+        <% end %>
+        <td class="my-0 text-center align-middle">
+          <%= link_to dado, class: 'btn btn-outline-primary btn-sm' do %>
+            <i class="material-icons my-0">search</i>
+          <% end %>
+          <%= link_to "#{dado.class.name.pluralize.downcase}/#{dado.id}/edit", class: 'btn btn-outline-warning btn-sm' do %>
+            <i class="material-icons my-0">create</i>
+          <% end %>
+          <%= link_to dado, method: :delete, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('msg.confirm') }  do %>
+            <i class="material-icons my-0">clear</i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="mx-auto">
+  <%= will_paginate dados %>    
+</div>
+</div>
+
+<script>
+  jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+          window.location = $(this).data("href");
+      });
+      $(".clickable-row").dblclick(function() {
+          window.location = $(this).data("href")+"/edit";
+      });
+  });
+</script>
