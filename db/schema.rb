@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_17_022348) do
+ActiveRecord::Schema.define(version: 2019_05_17_143401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(version: 2019_03_17_022348) do
     t.bigint "tipo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "conta_id"
     t.index ["categoria_id"], name: "index_lancamentos_on_categoria_id"
+    t.index ["conta_id"], name: "index_lancamentos_on_conta_id"
     t.index ["tipo_id"], name: "index_lancamentos_on_tipo_id"
   end
 
@@ -47,5 +49,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_022348) do
   end
 
   add_foreign_key "lancamentos", "categorias"
+  add_foreign_key "lancamentos", "contas"
   add_foreign_key "lancamentos", "tipos"
 end

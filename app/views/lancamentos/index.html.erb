@@ -5,7 +5,9 @@
   <div class='container-fluid row'>
     <div class="card w-100">
       <div class="card-header">
-        
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addLancamentoModal">
+          <i class="material-icons my-0">add</i>
+        </button>
       </div>
       <div class="card-body">
         <div class='container-fluid row'>
@@ -48,4 +50,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addLancamentoModal" tabindex="-1" role="dialog" aria-labelledby="addLancamentoModalLabel" aria-hidden="true">
+  <%= render 'form_modal', lancamento: @lancamento %>
 </div>

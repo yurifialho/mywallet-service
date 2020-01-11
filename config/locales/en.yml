@@ -36,6 +36,7 @@ en:
     remove: ' has removed'
     update: ' has updated'
     confirm: ' Are you sure?'
+    no_record: 'No register has found.'
   
   label:
     nome: 'Name'
@@ -45,13 +46,17 @@ en:
     incluir: 'Add'
     valor: 'Value'
     data: 'Date'
+    
   
   model:
     conta:
       titulo: 'Account'
+    conta_painel:
+      titulo: 'Account Dashboard'
     categoria:
       titulo: 'Category'
     tipo:
       titulo: "Type"
     lancamento:
       titulo: "Accounting Entry"
+    
