@@ -11,16 +11,25 @@
   </thead>
   <tbody>
     <% dados.each do |dado| %>
-      <tr class="clickable-row" data-href="<%= "#{dado.class.name.pluralize.downcase}/#{dado.id}" %>">
-        <th class="align-middle text-center" scope="row"><%= dado.id %></th>
+      <tr>
+        <th class="align-middle text-center clickable-row" 
+            scope="row"
+            data-href="<%= "#{dado.class.name.pluralize.downcase}/#{dado.id}" %>">
+              <%= dado.id %>
+        </th>
         <% columns.each do |col| %>
-          <td class="align-middle"><%= dado[col] %></td>
+          <td class="align-middle clickable-row"
+              data-href="<%= "#{dado.class.name.pluralize.downcase}/#{dado.id}" %>">
+                <%= dado[col] %>
+          </td>
         <% end %>
         <td class="my-0 text-center align-middle">
           <%= link_to dado, class: 'btn btn-outline-primary btn-sm' do %>
             <i class="material-icons my-0">search</i>
           <% end %>
-          <%= link_to "#{dado.class.name.pluralize.downcase}/#{dado.id}/edit", class: 'btn btn-outline-warning btn-sm' do %>
+          <%= link_to "#{dado.class.name.pluralize.downcase}/#{dado.id}/edit", 
+                      class: 'btn btn-outline-warning btn-sm', 
+                      :remote => true do %>
             <i class="material-icons my-0">create</i>
           <% end %>
           <%= link_to dado, method: :delete, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('msg.confirm') }  do %>
@@ -36,13 +45,5 @@
 </div>
 </div>
 
-<script>
-  jQuery(document).ready(function($) {
-      $(".clickable-row").click(function() {
-          window.location = $(this).data("href");
-      });
-      $(".clickable-row").dblclick(function() {
-          window.location = $(this).data("href")+"/edit";
-      });
-  });
-</script>
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+</div>

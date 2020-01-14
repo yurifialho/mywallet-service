@@ -23,6 +23,9 @@ class ContasController < ApplicationController
 
   # GET /conta/1/edit
   def edit
+    respond_to do |format|
+      format.js {render layout: false}
+    end
   end
 
   # POST /conta

@@ -1,0 +1,37 @@
+<%= form_with(model: conta, local: true) do |form| %>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLancamentoModalLabel">Edit Conta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+        <% if conta.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(conta.errors.count, "error") %> prohibited this lancamento from being saved:</h2>
+    
+          <ul>
+          <% conta.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        
+        <div class="form-group">
+          <label for="conta_nome"><%= t('label.nome') %></label>
+          <%= form.text_field :nome, {:class => 'form-control',
+                                      'placeholder' => "Nome da Conta",
+                                      'aria-describedby' => 'nameHelp'  }%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= form.submit t('label.incluir'), :class => "btn btn-primary" %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>>
+  <% end %>
