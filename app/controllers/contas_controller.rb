@@ -49,7 +49,7 @@ class ContasController < ApplicationController
   def update
     respond_to do |format|
       if @conta.update(conta_params)
-        format.html { redirect_to @conta, notice: @@titulo + t('msg.update') }
+        format.html { redirect_to contas_path, notice: @@titulo + t('msg.update') }
         format.json { render :show, status: :ok, location: @conta }
       else
         format.html { render :edit }

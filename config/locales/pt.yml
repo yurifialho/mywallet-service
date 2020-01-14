@@ -13,6 +13,7 @@ pt:
     acao: 'Ação'
     cod: '#'
     incluir: 'Incluir'
+    salvar: 'Salvar'
     valor: 'Valor'
     data: 'Data'
   
