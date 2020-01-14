@@ -1,6 +1,3 @@
-<h1>Editing Tipo</h1>
-
-<%= render 'form', tipo: @tipo %>
-
-<%= link_to 'Show', @tipo %> |
-<%= link_to 'Back', tipos_path %>
+$("#formModal").html("<%= escape_javascript(render partial: 'form_modal', 
+                                                     locals: { tipo: @tipo } ) %>");
+$("#formModal").modal("show");

@@ -1,0 +1,37 @@
+<%= form_with(model: tipo, local: true) do |form| %>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLancamentoModalLabel">Edit Tipo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+        <% if tipo.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(tipo.errors.count, "error") %> prohibited this lancamento from being saved:</h2>
+    
+          <ul>
+          <% tipo.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        
+        <div class="form-group">
+          <label for="tipo_descricao"><%= t('label.descricao') %></label>
+          <%= form.text_field :descricao, {:class => 'form-control',
+                                      'placeholder' => "Descrição do Tipo",
+                                      'aria-describedby' => 'descricaoHelp'  }%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= form.submit t('label.salvar'), :class => "btn btn-primary", data: {"disable-with": "Salvando"} %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>>
+  <% end %>

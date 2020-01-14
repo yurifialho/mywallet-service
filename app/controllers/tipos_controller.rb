@@ -23,6 +23,9 @@ class TiposController < ApplicationController
 
   # GET /tipos/1/edit
   def edit
+    respond_to do |format|
+      format.js { render layout: false }
+    end
   end
 
   # POST /tipos
@@ -46,7 +49,7 @@ class TiposController < ApplicationController
   def update
     respond_to do |format|
       if @tipo.update(tipo_params)
-        format.html { redirect_to @tipo, notice: @@titulo + t('msg.update') }
+        format.html { redirect_to tipos_path, notice: @@titulo + t('msg.update') }
         format.json { render :show, status: :ok, location: @tipo }
       else
         format.html { render :edit }
