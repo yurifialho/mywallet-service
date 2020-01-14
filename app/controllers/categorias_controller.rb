@@ -23,6 +23,9 @@ class CategoriasController < ApplicationController
 
   # GET /categoria/1/edit
   def edit
+    respond_to do |format|
+      format.js {render layout: false}
+    end
   end
 
   # POST /categoria
@@ -46,7 +49,7 @@ class CategoriasController < ApplicationController
   def update
     respond_to do |format|
       if @categoria.update(categoria_params)
-        format.html { redirect_to @categoria, notice: @@titulo + t('msg.update') }
+        format.html { redirect_to categorias_path, notice: @@titulo + t('msg.update') }
         format.json { render :show, status: :ok, location: @categoria }
       else
         format.html { render :edit }

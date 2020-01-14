@@ -1,6 +1,3 @@
-<h1>Editing Categorium</h1>
-
-<%= render 'form', categorium: @categorium %>
-
-<%= link_to 'Show', @categorium %> |
-<%= link_to 'Back', categoria_path %>
+$("#formModal").html("<%= escape_javascript(render partial: 'form_modal', 
+                                                     locals: { categoria: @categoria } ) %>");
+$("#formModal").modal("show");

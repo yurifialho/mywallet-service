@@ -1,0 +1,37 @@
+<%= form_with(model: categoria, local: true) do |form| %>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLancamentoModalLabel">Edit Categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+        <% if categoria.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(categoria.errors.count, "error") %> prohibited this lancamento from being saved:</h2>
+    
+          <ul>
+          <% categoria.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        
+        <div class="form-group">
+          <label for="categoria_descricao"><%= t('label.descricao') %></label>
+          <%= form.text_field :descricao, {:class => 'form-control',
+                                      'placeholder' => "Descrição da Categoria",
+                                      'aria-describedby' => 'categoriaHelp'  }%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= form.submit t('label.salvar'), :class => "btn btn-primary", data: {"disable-with": "Salvando"} %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>>
+  <% end %>
