@@ -1,1 +1,1 @@
-json.array! @conta, partial: 'conta/contum', as: :contum
+json.array! @contas, partial: 'contas/conta', as: :conta

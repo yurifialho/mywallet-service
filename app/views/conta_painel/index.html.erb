@@ -4,50 +4,38 @@
   </div>
   <%= form_tag conta_painel_index_path, method: :get, :id => 'selectConta' do %>
     <div class="form-group">
-    <%= select_tag :conta, options_from_collection_for_select(Conta.all.collect, "id", "nome"),
+    <%= select_tag :conta, options_from_collection_for_select(Conta.all.collect, "id", "nome", params[:conta]),
                    :onchange => ("javascript: document.forms['selectConta'].submit()"),
                    :class => "form-control" %>
     </div>
   <% end %>
-  <div class='container-fluid row'>
-    <div class="card w-100">
-      <div class="card-header">
-      <% for i in 1..12 %>
-        <button type="button" class="btn btn-outline-primary"><%= "#{i} - #{Date::MONTHNAMES[i]}"%></button>
-      <% end %> 
-      </div>
-      <div class="card-body">
-        <div class='container-fluid row'>
-        <table class="table table-sm table-bordered table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col" class="text-center col-md-1"><%= t('label.cod') %></th>
-            <th scope="col" class="text-center"><%= t('label.nome') %></th>
-            <th scope="col" class="text-center col-md-1"><%= t('label.acao') %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @conta.lancamentos.size == 0 %>
-            <tr scope="row">
-              <th class="align-middler text-center" scope="col" colspan="3"><%= t('msg.no_record') %></th>
-            </tr>
+  <div class='container-fluid'>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <% for i in 1..12 %>
+          <%= link_to conta_painel_index_path(:month => i, :conta => params[:conta]), 
+                      {class: 'nav-item nav-link '+(i.to_s == params[:month] ? 'active' : ''),
+                      :remote => true } do %>
+            <%= "#{i} - #{Date::MONTHNAMES[i]}"%>
           <% end %>
-          <% @conta.lancamentos.each do |conta| %>
-            <tr>
-              <th class="align-middle text-center" scope="row"><%= conta.id %></th>
-              <td class="align-middle"><%= conta.nome %></td>
-              <td class="my-0 text-center align-middle">
-                <%= link_to conta, class: 'btn btn-outline-primary btn-sm' do %><i class="material-icons my-0">search</i><% end %>
-                <%= link_to edit_conta_path(conta), class: 'btn btn-outline-warning btn-sm' do %><i class="material-icons my-0">create</i><% end %>
-                <%= link_to conta, method: :delete, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('msg.confirm') }  do %><i class="material-icons my-0">clear</i><% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-        </div>
+        <% end %>
       </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+    <% for i in 1..12 %>
+      <div class="tab-pane fade show <%= (i.to_s == params[:month] ? 'active' : '') %>" 
+           id="<%= "month#{i}" %>" role="tabpanel" aria-labelledby="<%= "month#{i}-tab" %>"><%= "month#{i}" %></div>
+    <% end %>
     </div>
-  </div>
+  </div>  
 </div>
+
+<% '''
+,
+                      id: "month#{i}-tab",
+                      role: "tab",
+                      "data-toggle": "tab",
+                      "aria-controls": "month#{i}",
+                      "aria-selected": "#{i.to_s == params[:month]}"
+                      
+                      ''' %>

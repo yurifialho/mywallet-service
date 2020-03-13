@@ -6,7 +6,7 @@ class ContaPainelController < ApplicationController
     # GET /conta
     # GET /conta.json
     def index
-        
+      @conta    
     end
 
     private
